@@ -28,6 +28,27 @@ def column_converter(col):
             num = num * 26 + (ord(c.upper()) - ord('A')) + 1
     return num - 1
 
+def student_status(student: str):
+    """
+    Checks if a student responded to the grad and/or undergrad questions.
+    """
+    if isinstance(student[column_converter("I")], str) \
+    or isinstance(student[column_converter("L")], str) \
+    or isinstance(student[column_converter("CI")], str):
+        if (student[column_converter("I")] \
+        or student[column_converter("L")]) == "Graduate":
+            if student[column_converter("CI")] == "Yes":
+                return "Both"
+            else:
+                return "Graduate"
+        elif (student[column_converter("I")] \
+        or student[column_converter("L")]) == "Undergraduate":
+            return "Undergraduate"
+        else:
+            return "Missing"
+    else:
+        return "Missing"
+
 def short_checker(response: str):
     """
     Checks short answers against criteria
