@@ -8,6 +8,8 @@ why_am_i_doing_this.py
 import numpy as np
 import scipy as sp
 import pandas as pd
+import matplotlib.pyplot as plt
+from collections import Counter
 
 # Data import
 raw_dat = pd.read_excel("qap.xlsx")
@@ -75,3 +77,9 @@ for i in dat:
 results = np.delete(dat, np.array(bad), 0)
 df_results = pd.DataFrame(data=results[0:,1:], index=results[0:,0], columns=np.array(raw_dat.columns)[1:])
 df_results.to_excel("output.xlsx")
+
+# DEMONSTRATING THE ERROR
+lst = []
+for i in dat:
+    lst.append(student_status(i))
+Counter(lst)
