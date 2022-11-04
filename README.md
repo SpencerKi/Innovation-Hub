@@ -12,6 +12,7 @@ If anyone not from the iHub is looking at this repository — go away. Yes, the 
 
 ## Current Purging Criteria
 time_min <- The minimum time in seconds 
+
 short_qs <- The Excel columns with the short answer questions
 
 ## Current Criteria Priority
