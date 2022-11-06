@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 Spencer Y. Ki
-2022-11-02
+2022-11-06
 
 why_am_i_doing_this.py
 """
@@ -37,14 +37,14 @@ def student_status(student: str):
     if isinstance(student[column_converter("I")], str) \
     or isinstance(student[column_converter("L")], str) \
     or isinstance(student[column_converter("CI")], str):
-        if (student[column_converter("I")] \
-        or student[column_converter("L")]) == "Graduate":
+        if student[column_converter("I")] == "Graduate" \
+        or student[column_converter("L")] == "Graduate":
             if student[column_converter("CI")] == "Yes":
                 return "Both"
             else:
                 return "Graduate"
-        elif (student[column_converter("I")] \
-        or student[column_converter("L")]) == "Undergraduate":
+        elif student[column_converter("I")] == "Undergraduate" \
+        or student[column_converter("L")] == "Undergraduate":
             return "Undergraduate"
         else:
             return "Missing"
@@ -61,7 +61,7 @@ def short_checker(response: str):
         return False
     return True
     
-# P U R G E
+# P U R G E (Proper criteria not yet implemented)
 bad = []
 for i in dat:    
     # Time-based criteria
@@ -77,9 +77,3 @@ for i in dat:
 results = np.delete(dat, np.array(bad), 0)
 df_results = pd.DataFrame(data=results[0:,1:], index=results[0:,0], columns=np.array(raw_dat.columns)[1:])
 df_results.to_excel("output.xlsx")
-
-# DEMONSTRATING THE ERROR
-lst = []
-for i in dat:
-    lst.append(student_status(i))
-Counter(lst)
