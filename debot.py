@@ -50,6 +50,18 @@ def student_status(student: str):
             return "Missing"
     else:
         return "Missing"
+    
+def alt_student_status(student: str) -> str:
+    if isinstance(student[column_converter("CI")], str):
+        if student[column_converter("CI")] == "Yes":
+            return "Both"
+        else:
+            return "Graduate"
+    elif student[column_converter("I")] == "Undergraduate"\
+    or student[column_converter("L")] == "Undergraduate":
+        return "Undergraduate"
+    else:
+        return "Missing"
 
 def short_checker(response: str):
     """
