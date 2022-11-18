@@ -5,7 +5,7 @@ Scripts for the Innovation Hub, Division of Student Life, University of Toronto.
 If anyone not from the iHub is looking at this repository — go away. Yes, the code is bad.
 
 ## Using csb_debot.exe (version 2.0.1 2022-11-17)
-0. 64-bit version of Windows required (I'm like 90% sure the office computers fill this requirement)
+0. 64-bit version of Windows required (I'm like 90% sure the office computers fill this requirement).
 1. Locate the csb_debot.exe executable in the folder UTQAP > Quantitative Data Analyst > CSB Debotting App in the Sharepoint general files.
 2. Download csb_debot.exe to an offline location (it will **not** work in Sharepoint).
 3. Spreadsheet of responses downloaded from the MS Forms survey should be copied to the same offline folder as csb_debot.exe. Rename the spreadsheet to "csb.xlsx" but **do not** edit the contents of the spreadsheet.
