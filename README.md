@@ -20,16 +20,16 @@ This section is probably only relevant to Tanvi.
 3. Run script, cleaned_csb_responses.xlsx and rejected_csb_responses.xlsx should be generated in the active directory.
 
 ## Current Purging Criteria
-complete_min <- The expected minimum time to complete the survey in seconds
+complete_min = 360 <- The expected minimum time to complete the survey in seconds
 
-simple_min <- The maximum length for a 'simple' response (e.g., "no" or "n/a")
+simple_min = 3 <- The maximum length for a 'simple' response (e.g., "no" or "n/a")
 
-grad_short_qs <- The Excel columns with the short answer questions for graduate students
+grad_short_qs = ["CE","CH"] <- The Excel columns with the short answer questions for graduate students
 
-ug_short_qs <- The Excel columns with the short answer questions for undergraduate students
+ug_short_qs ["CZ","DJ","DS","EJ"] <- The Excel columns with the short answer questions for undergraduate students
 
 ## Current Criteria Priority
-1. Is response time under 6 minutes? (Logic: The median response time is currently 396 seconds and bots presumably far outnumber real responses)
+1. Is response time under completion minimum? (Logic: The median response time is currently 396 seconds and bots presumably far outnumber real responses)
 2. (a) Is the respondent a graduate student?
 - If a short answer response is not simple (see criteria above), is it a duplicate? (Logic: removes duplicates that aren't "no", "n/a", or similar)
 - Are any short answer responses only a single character long? (Logic: presumably botted responses frequently have single-character responses to short-answer questions)
@@ -39,7 +39,7 @@ ug_short_qs <- The Excel columns with the short answer questions for undergradua
 - Are any short answer responses only a single character long?
 - Are any short answer questions non-alphanumeric?
 2. (c) Is the respondent a "both" student?
-- Is response time over 12 minutes? (Logic: "both" students have to respond to both the undergraduate and graduate questions, so double the time is allotted).
+- Is response time under double the completion minimum? (Logic: "both" students have to respond to both the undergraduate and graduate questions, so double the time is allotted).
 - If a short answer response is not simple (see criteria above), is it a duplicate?
 - Are any short answer responses only a single character long?
 - Are any short answer questions non-alphanumeric?
