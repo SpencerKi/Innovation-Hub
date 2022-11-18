@@ -26,7 +26,7 @@ simple_min = 3 <- The maximum length for a 'simple' response (e.g., "no" or "n/a
 
 grad_short_qs = ["CE","CH"] <- The Excel columns with the short answer questions for graduate students
 
-ug_short_qs ["CZ","DJ","DS","EJ"] <- The Excel columns with the short answer questions for undergraduate students
+ug_short_qs = ["CZ","DJ","DS","EJ"] <- The Excel columns with the short answer questions for undergraduate students
 
 ## Current Criteria Priority
 1. Is response time under completion minimum? (Logic: The median response time is currently 396 seconds and bots presumably far outnumber real responses)
