@@ -1,0 +1,9 @@
+HELLO! THIS IS A SAMPLE CONFIG FILE SET TO DEBOT CSB. INSTRUCTIONS ON MANUALLY EDITING THIS FILE ARE ON MY GITHUB.
+file_name = csb
+complete_min = 360
+simple_min = 3
+grad_short_qs = CE, CH
+ug_short_qs = CZ, DJ, DS, EJ
+current = I
+alum = L
+both = CI
