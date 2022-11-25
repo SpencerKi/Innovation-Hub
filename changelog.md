@@ -1,4 +1,7 @@
 # Changelog
+## 2.1 (2022-11-23)
+- Removed helper functions from *csb_debot.py* and moved them to seperate module.
+- With generalisation of the de-botting loop, this file is probably deprecated now.
 ## 2.0.1 (2022-11-17)
 - Renamed *debot.py* to *csb_debot.py* in anticipation of generalising the debotting program.
 ## 2.0 (2022-11-17)
