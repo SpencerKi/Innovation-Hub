@@ -9,7 +9,7 @@ If anyone not from the iHub is looking at this repository — go away. Yes, the 
 1. Locate the debot.exe executable in the folder UTQAP > Quantitative Data Analyst > Debotting App in the Sharepoint general files.
 2. Download debot.exe to an offline location (it will **not** work in Sharepoint).
 3. Download the spreadsheet of responses from the MS Forms survey and copy them to the same offline folder as debot.exe. **Do not** edit the columns or column headers of the spreadsheet (editing individual responses ahead of time is fine, if you need to).
-4. Run debot.exe and follow the instructions on the pop-up window. It may take a minute for instructions to appear. The cleaned responses (cleaned_[PROJECT NAME]_responses.xlsx) and rejected responses ("rejected_[PROJECT NAME]_responses.xlsx") should then appear in the folder.
+4. Run debot.exe and follow the instructions on the pop-up window. It may take a minute for instructions to appear. The cleaned responses (cleaned\_[PROJECT NAME]\_responses.xlsx) and rejected responses ("rejected\_[PROJECT NAME]\_responses.xlsx") should then appear in the folder.
 5. A configuration file should also be outputted, to speed up the process next time you use the app - it saves the input settings from the most recent program run. The values in this config file can be edited manually as long as you don't touch anything to the left side of the equals sign.
 
 **Most troubleshooting is covered in the "Current Purging Criteria" section below. Otherwise, ask me if something completely unusual goes wrong!**
