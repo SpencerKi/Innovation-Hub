@@ -1,20 +1,21 @@
 # -*- coding: utf-8 -*-
 """
 Spencer Y. Ki
-2023-02-28
+2023-04-13
 
 """
 import numpy as np
 import pandas as pd
 import re
 import matplotlib.pyplot as plt
+import sys
 
-dept = 4#int(input("Please input the number corresponding to the department you are analysing:\n0: ART\n1: CSB\n2: EAS\n3: ESL\n4: HIS\n5: IR\n6: POL\n"))
+dept = int(input("Please input the number corresponding to the department you are analysing:\n0: ART\n1: CSB\n2: EAS\n3: ESL\n4: HIS\n5: IR\n6: POL\n"))
 if dept != 3 and dept != 5:
-    stu = 0#int(input("Please input the number corresponding to the student status you would like to consider:\n0: All students and alumni\n1: Only current students\n2: Only alumni\n"))
-    lvl = 2#int(input("Please input the number corresponding to the level of study you would like to consider:\n0: All levels of study\n1: Only undergraduate\n2: Only graduate students\n"))
+    stu = int(input("Please input the number corresponding to the student status you would like to consider:\n0: All students and alumni\n1: Only current students\n2: Only alumni\n"))
+    lvl = int(input("Please input the number corresponding to the level of study you would like to consider:\n0: All levels of study\n1: Only undergraduate\n2: Only graduate students\n"))
     if lvl != 1:
-        deg = 0#int(input("Please input the number corresponding to the graduate degress you would like to consider:\n0: All graduate degrees\n1: Only master's degrees\n2: Only PhDs\n"))
+        deg = int(input("Please input the number corresponding to the graduate degress you would like to consider:\n0: All graduate degrees\n1: Only master's degrees\n2: Only PhDs\n"))
     else:
         deg = 0
 else:
@@ -51,12 +52,11 @@ dat = raw_dat
 if student_status != "":
     dat = dat[(dat[dat.iloc[:,indices[department]["status"]].name] == student_status)]
 if level_of_study != "":
-    dat = dat[(dat[dat.iloc[:,indices[department]["cur_lvl"]].name] == "Graduate Student") | 
+    dat = dat[(dat[dat.iloc[:,indices[department]["cur_lvl"]].name] == level_of_study) | 
               (dat[dat.iloc[:,indices[department]["alm_lvl"]].name] == level_of_study)]
 if degree != "":
     dat = dat[(dat[dat.iloc[:,indices[department]["cur_dgr"]].name] == degree) | 
-              (dat[dat.iloc[:,indices[department]["alm_dgr"]].name] == degree)]# |
-              #(dat[dat.iloc[:,33].name] == "Yes")]
+              (dat[dat.iloc[:,indices[department]["alm_dgr"]].name] == degree)]
 dat = dat.to_numpy()
 
 # Quantify Likert questions according to regex criteria
@@ -143,7 +143,7 @@ for i in results:
     if sum(results[i]) != 100:
         results[i][-1] +=  100 - sum(results[i])
 
-categories = input("Which of the following categories fit the data:\n\n1: [0: Not at all, 1: Slightly, 2: Moderately, 3: Very, 4: Extremely]\n\n2: [0: Poor, 2: Fair, 3: Good, 4: Excellent]\n\n3: [0: Definitely no, 1: Probably no, 3: Probably yes, 4: Definitely yes]\n")
+categories = input("Which of the following categories fit the data:\n\n1: [0: Not at all, 1: Slightly, 2: Moderately, 3: Very, 4: Extremely]\n\n2: [0: Poor, 2: Fair, 3: Good, 4: Excellent]\n\n3: [0: Definitely no, 1: Probably no, 3: Probably yes, 4: Definitely yes]\n\n4: [4: Yes, 0: No]\n\n5: [0: Not at all, 1: Slightly, 2: Moderately, 3: Very]\n\n6: [4: Very likely, 3: Likely, 1: Unlikely, 0: Not at all]\n\n7: [4: Strongly agree, 3: Agree, 2: Neither agree nor disagree, 1: Disagree, 0: Strongly disagree]\n")
 
 if categories == "1":
     category_names = ["Extremely", "Very", "Moderately","Slightly", "Not at all", "No response"]
@@ -173,7 +173,10 @@ else:
     category_names = ["Extremely", "Very", "Moderately","Slightly", "Not at all", "No response"]
 
 title = input("WHAT IS THE OVERARCHING QUESTION OF THIS VISUALISATION (e.g., How important were the following factors to you in deciding on your program of study?)?\n")
-
+if "/" in title:
+    print("THIS IS A VERY SPECIFIC ERROR THAT SPENCER WILL HAVE TO FIX MANUALLY; LET HIM KNOW IF IT COMES UP.")
+    sys.exit()
+    
 def survey(results, category_names, title):
     """
     Parameters
@@ -234,8 +237,3 @@ graph.show()
 filename = "_".join([option for option in [department, level_of_study, degree, student_status] if option != ""])
 graph.savefig(f"{filename}_{title[:-1]}.png")
 graph.savefig(f"{filename}_{title[:-1]}.svg")
-
-# new_results = {"Service-learning courses" : results[list(results.keys())[0]],
-#                "Active-learning courses" : results[list(results.keys())[1]],
-#                "Research participation courses" : results[list(results.keys())[2]]}
-# title = "How interested are you in the following types of courses:"
