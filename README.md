@@ -1,5 +1,5 @@
 # Innovation Hub Repository
-Scripts for the Innovation Hub, Division of Student Life, University of Toronto. Primarily written for the UTQAP team, but survey-related scripts should be generalisable to any survey. I don't work there anymore, but I'm always happy to help and only an email away!
+Scripts for the Innovation Hub, Division of Student Life, University of Toronto. Primarily written for the UTQAP team, but survey-related scripts should be generalisable to any survey. I don't work there anymore, but I'm always happy to help and am only an email away!
 
 ## Analysis
 If everyone absolutely insists on using Microsoft Forms for data collection, the scripts in the Analysis folder can clean their ridiculous output and return useful sample statistics and visualisations. I exported .exes of these but no one was using them and we needed space on the Sharepoint so only scripts are left. Instructions are as follows:
