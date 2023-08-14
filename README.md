@@ -1,10 +1,24 @@
 # Innovation Hub Repository
-Scripts for the Innovation Hub, Division of Student Life, University of Toronto.
+Scripts for the Innovation Hub, Division of Student Life, University of Toronto. Primarily written for the UTQAP team, but survey-related scripts should be generalisable to any survey. I don't work there anymore, but I'm always happy to help and only an email away!
 
-## Disclaimer
-If anyone not from the iHub is looking at this repository — go away. Yes, the code is bad.
+## Analysis
+If everyone absolutely insists on using Microsoft Forms for data collection, the scripts in the Analysis folder can clean their ridiculous output and return useful sample statistics and visualisations. I exported .exes of these but no one was using them and we needed space on the Sharepoint so only scripts are left. Instructions are as follows:
 
-## Using debot.exe (version 1.0 2022-11-23)
+### Using utqap_analysis.py
+likert_quantifier.R is the functional equivalent of this script in R, if preferred.
+
+0. Python 3.7+ required (Anaconda distribution preferred for the correct packages).
+1. Lines 40-46 should have the corresponding columns in the raw Excel output filled in.
+2. Lines 12-20 are customised user prompts for the 2022-2023 data; I recommend commenting them out and replacing the values in Lines 22-36 directly.
+3. Everything should go smoothly from there.
+
+### Using likert_visualiser.py
+This script has functionally the same format as utqap_analysis.py, but outputs useful Likert plots for the comms team to play with.
+
+## Debotting
+During the 2022–2023 UTQAP survey process, we got hit by hundreds of obviously fake respondents presumably looking for a gift card. Hopefully this isn't relevant in the future, but the below code was our ad hoc solution to figuring out which responses were real and which were fake. The settings are determined by the config.txt in the Debotting folder. Instructions are as follows:
+
+### Using debot.exe (version 1.0 2022-11-23)
 0. 64-bit version of Windows required (I'm like 90% sure the office computers fill this requirement).
 1. Locate the debot.exe executable in the folder UTQAP > Quantitative Data Analyst > Debotting App in the Sharepoint general files.
 2. Download debot.exe to an offline location (it will **not** work in Sharepoint).
@@ -14,24 +28,14 @@ If anyone not from the iHub is looking at this repository — go away. Yes, the 
 
 **Most troubleshooting is covered in the "Current Purging Criteria" section below. Otherwise, ask me if something completely unusual goes wrong!**
 
-## Using debot.py (version 1.0 2022-11-23)
-This section is probably only relevant to Tanvi.
-
+### Using debot.py (version 1.0 2022-11-23)
 0. Python 3.7+ required (Anaconda distribution preferred for the correct packages).
 1. Both scripts (*debot.py* and *debot_helpers.py*) should be in the same file directory as spreadsheet. You shouldn't really need to open *debot_helpers.py*, it's just there to hold helper functions.
 2. Alter parameters to fit desired purging criteria. Nearly all *print()* and *input()* lines are only there for the executable and can be safely deleted/commented out if working with the script directly. For one, you can skip the entire try/except ridiculousness from lines 31-64. Additionally, the if/else conditions on lines 80 and 99 are based on user input; remove lines 80 and 99-129, unindenting 81-98. Alternatively, see step 3 (b) below.
 3. (a) The rest of that should run as a fairly straightforward script, but if things are needlessly messy it might be easier to just run the deprecated csb_debot.py script below.
 3. (b) Alternatively, if the script is working but its just annoying to repeatedly fiddle with the conditionals, keep the input/print and try/except lines where they are and just write a config file manually. An example one for the CSB survey is included in this repository - feel free to edit the variable values but do not edit the variable names.
 
-## ~Using csb_debot.py (version 2.2 2022-11-23)~ DEPRECATED UNLESS YOU'RE TANVI
-This section is ~probably~ definitely only relevant to Tanvi.
-
-0. Python 3.7+ required (Anaconda distribution preferred for the correct packages).
-1. Both scripts (*csb_debot.py* and *debot_helpers.py*) should be in the same file directory as the spreadsheet. You shouldn't really need to open *debot_helpers.py*, it's just there to hold helper functions. Spreadsheet should be renamed "csb.xlsx"
-2. Alter parameters to fit desired purging criteria. Alterable parameters detailed below.
-3. Run script, cleaned_csb_responses.xlsx and rejected_csb_responses.xlsx should be generated in the active directory.
-
-## Current Purging Criteria / config.txt Settings
+### Current Purging Criteria / config.txt Settings
 file_name <- The name of the spreadsheet file excluding ".xlsx". If encountering difficulty at this stage, make sure that the spreadsheet file is in the correct directory, the spreadsheet file is name correctly, and that the spreadsheet is actually in .xlsx form (and not, for example, a .csv).
 
 complete_min <- The expected minimum time to complete the survey in seconds. This must be an int value (i.e., a whole number). Any responses with responses times under this value will be purged.
@@ -50,7 +54,7 @@ both <- The Excel column with the question checking whether current/alumni gradu
 
 **Edge cases have custom error messages written by me. The only way to throw up some sort of system error is from an incorrect setting reading - please let me know if that happens and I'll troubleshoot manually.**
 
-## Current Criteria Priority (in the CSB Example)
+### Current Criteria Priority (in the CSB Example)
 1. Is response time under completion minimum? (Logic: The median response time is currently 396 seconds and bots presumably far outnumber real responses)
 2. (a) Is the respondent a graduate student?
 - If a short answer response is not simple (see criteria above), is it a duplicate? (Logic: removes duplicates that aren't "no", "n/a", or similar)
